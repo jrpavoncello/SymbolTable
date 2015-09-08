@@ -130,6 +130,9 @@ class P1
 		catch (EmptySTException e)
 		{
 			e.printStackTrace();
+		} catch (DuplicateException e)
+		{
+			e.printStackTrace();
 		}
 	} // main
 } // class P1
