@@ -1,4 +1,3 @@
-
 public class IntSymb extends Symb
 {
 	private int value;
