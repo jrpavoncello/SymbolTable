@@ -1,3 +1,4 @@
+open
 insert green 1848
 insert blue 1845
 lookup green
