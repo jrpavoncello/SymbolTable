@@ -20,13 +20,15 @@ class P1
 		try
 		{
 			SymbolTable table = new SymbolTable();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					System.in));
 			
 			boolean acceptInput = true;
 			while (acceptInput)
 			{
-				BufferedReader reader = new BufferedReader(new InputStreamReader(
-						System.in));
-	
+				try
+				{
 					String input = reader.readLine().toUpperCase();
 	
 					switch(input)
@@ -34,7 +36,7 @@ class P1
 						case "OPEN":
 							
 							table.openScope();
-							System.out.println("New cope opened.");
+							System.out.println("New scope opened.");
 							break;
 							
 						case "CLOSE":
@@ -65,10 +67,10 @@ class P1
 							System.out.println("Enter associated integer:");
 							String symbolValue = reader.readLine();
 							
-							Symb symbol = new IntSymb(symbolName, Integer.parseInt(symbolValue));
+							Symb symbol = new TestSym(symbolName, Integer.parseInt(symbolValue));
 							table.insert(symbol);
 
-							System.out.println(symbol.name() + " entered into symbole table.");
+							System.out.println(symbol.toString() + " entered into symbol table.");
 							break;
 						}
 						case "LOOKUP":
@@ -80,7 +82,7 @@ class P1
 
 							if(symbol != null)
 							{
-								System.out.println(symbol.name() + " found in top of scope");
+								System.out.println(symbol.toString() + " found in top of scope");
 							}
 							else
 							{
@@ -97,7 +99,7 @@ class P1
 
 							if(symbol != null)
 							{
-								System.out.println(symbol.name() + " found in symbol table");
+								System.out.println(symbol.toString() + " found in symbol table");
 							}
 							else
 							{
@@ -117,20 +119,21 @@ class P1
 							System.out.println("Command not accepted, try again:");
 							break;
 					}
+				}
+				catch (NumberFormatException e)
+				{
+					e.printStackTrace();
+				}
+				catch (EmptySTException e)
+				{
+					e.printStackTrace();
+				} catch (DuplicateException e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
-		catch (NumberFormatException e)
-		{
-			e.printStackTrace();
-		}
 		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		catch (EmptySTException e)
-		{
-			e.printStackTrace();
-		} catch (DuplicateException e)
 		{
 			e.printStackTrace();
 		}

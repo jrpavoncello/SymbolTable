@@ -1,4 +1,3 @@
-# SymbolTable
 This program builds a symbol table by console input.
 Commands:
 Open (a new scope)

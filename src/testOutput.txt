@@ -1,0 +1,77 @@
+open
+New scope opened.
+insert
+Enter symbol:
+green
+Enter associated integer:
+1848
+(green:1848) entered into symbol table.
+insert
+Enter symbol:
+blue
+Enter associated integer:
+1845
+(blue:1845) entered into symbol table.
+lookup
+Enter symbol:
+green
+(green:1848) found in top of scope
+lookup
+Enter symbol:
+blue
+(blue:1845) found in top of scope
+lookup
+Enter symbol:
+orange
+orange not found in top of scope
+insert
+Enter symbol:
+green
+Enter associated integer:
+1836
+DuplicateException
+	at SymbolTable.insert(SymbolTable.java:66)
+	at P1.main(P1.java:71)
+open
+New scope opened.
+insert
+Enter symbol:
+green
+Enter associated integer:
+1836
+(green:1836) entered into symbol table.
+lookup
+Enter symbol:
+green
+(green:1836) found in top of scope
+dump
+Contents of symbol table:
+{green=(green:1836)}
+{green=(green:1848), blue=(blue:1845)}
+
+lookup
+Enter symbol:
+blue
+blue not found in top of scope
+global
+Enter symbol:
+blue
+(blue:1845) found in symbol table
+close
+Top scope closed.
+lookup
+Enter symbol:
+green
+(green:1848) found in top of scope
+lookup
+Enter symbol:
+blue
+(blue:1845) found in top of scope
+close
+Top scope closed.
+lookup
+Enter symbol:
+green
+green not found in top of scope
+quit
+Testing done

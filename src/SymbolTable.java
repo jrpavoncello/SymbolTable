@@ -1,12 +1,10 @@
 import java.io.*;
 import java.util.*;
 
-//import TestSym.java;
-
 class SymbolTable
 {
 
-	// Reff to the list and top scope
+	// Ref to the list and top scope
 	LinkedList<HashMap<String, Symb>> scopeList;
 	HashMap<String, Symb> currentScope;
 
@@ -15,7 +13,6 @@ class SymbolTable
 	{
 		scopeList = new LinkedList<HashMap<String, Symb>>();
 	}
-
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 
 	/** Opens a new scope with an empty hash map and adds to the end of the list **/
@@ -24,7 +21,6 @@ class SymbolTable
 		currentScope = new HashMap<String, Symb>();
 		scopeList.add(currentScope);
 	}
-
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 
 	/** Closes the current scope, if it exists **/
@@ -37,8 +33,8 @@ class SymbolTable
 			scopeList.remove(currentScope);
 			currentScope.clear();
 			currentScope = scopeList.peekLast(); // this will set currentScope
-													// to null if it's empty
-													// after
+												 // to null if it's empty
+												 // after
 		}
 	}
 
@@ -51,7 +47,6 @@ class SymbolTable
 	{
 		return (currentScope != null);
 	}
-
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 
 	/*
@@ -65,8 +60,8 @@ class SymbolTable
 		if (!check) {
 			throw new EmptySTException();
 		} else {
-			if (currentScope.containsValue(s.name())) { // current scope
-														// contains the value
+			if (currentScope.containsKey(s.name())) { // current scope contains
+													  // the value
 				// Throw exception
 				throw new DuplicateException();
 
@@ -76,7 +71,6 @@ class SymbolTable
 			}
 		}
 	}
-
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 
 	/*
@@ -92,7 +86,7 @@ class SymbolTable
 			return null;
 		} else {
 
-			if (currentScope.containsValue(s)) {
+			if (currentScope.containsKey(s)) {
 				// Value is in current scope
 				return currentScope.get(s);
 			} else {
@@ -101,7 +95,6 @@ class SymbolTable
 			}
 		}
 	}
-
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 
 	/*
@@ -123,11 +116,11 @@ class SymbolTable
 			HashMap<String, Symb> tmpMap;
 
 			// go through list in reverse to find first scope that has the token
-			for (int i = scopeList.size(); i >= 0; i--) {
+			for (int i = scopeList.size() - 1; i >= 0; i--) {
 
 				tmpMap = scopeList.get(i);
 
-				if (tmpMap.containsValue(s)) {
+				if (tmpMap.containsKey(s)) {
 					// Value is in scope
 					return tmpMap.get(s);
 				}
@@ -137,7 +130,6 @@ class SymbolTable
 			return null;
 		}
 	}
-
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 
 	/* returns a string representation of the symbolTable */
@@ -150,7 +142,7 @@ class SymbolTable
 		HashMap<String, Symb> tmpMap;
 
 		// go through list in reverse to find first scope that has the token
-		for (int i = scopeList.size(); i >= 0; i--) {
+		for (int i = scopeList.size() - 1; i >= 0; i--) {
 
 			tmpMap = scopeList.get(i);
 			outputString += tmpMap.toString();
@@ -160,7 +152,6 @@ class SymbolTable
 
 		return outputString; // change this
 	}
-
 	// ///////////////////////////////////////////////////////////////////////////////////////////////
 
 	/* Dumps a string representation of the symbolTable to screen */
